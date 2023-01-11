@@ -1,0 +1,154 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background-color: rgb(44, 44, 44);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 250px;
+  height: 250px;
+  background-color: rgb(16, 225, 253);
+  border-radius: 50%;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+
+  animation: sky-light-dark 5s linear infinite;
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+}
+
+.ground {
+  width: 250px;
+  height: 70px;
+  background-color: rgba(251, 222, 5);
+  position: absolute;
+  bottom: 0;
+}
+
+.pyramid {
+  position: absolute;
+  bottom: 25%;
+  left: 50%;
+  transform: translateX(-55%);
+  border: 80px solid rgb(251, 245, 229);
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-top-color: transparent;
+
+  animation: pyramid-color 5s linear infinite;
+}
+
+.pyramid::after {
+  content: "";
+  position: absolute;
+  border: 40px solid rgb(247, 224, 164);
+  border-right-color: transparent;
+  border-top-color: transparent;
+  transform: skew(15deg) translateX(10px);
+  animation: pyramid-color-2 5s linear infinite;
+}
+
+.shadow {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 55%) scaleY(0.4) skew(20deg);
+  border: 80px solid rgba(128, 128, 128, 0.356);
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  z-index: 1;
+  transform-origin: top;
+
+  animation: shadow-movement 5s linear infinite;
+}
+
+.sun {
+  position: absolute;
+  top: 50px;
+  left: 100px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: rgb(253, 196, 7);
+  transform-origin: 100% 500%;
+  animation: sun-rise-set 5s linear infinite;
+}
+
+@keyframes sun-rise-set {
+  0% {
+    transform: rotate(-90deg);
+    background-color: rgb(253, 175, 67);
+  }
+  50%,
+  70% {
+    background-color: rgb(253, 245, 7);
+  }
+  100% {
+    transform: rotate(90deg);
+    background-color: rgb(253, 175, 67);
+  }
+}
+
+@keyframes sky-light-dark {
+  0% {
+    opacity: 0;
+  }
+  30%,
+  50%,
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes pyramid-color {
+  0%,
+  50% {
+    border-bottom-color: rgb(251, 245, 229);
+  }
+  75%,
+  100% {
+    border-bottom-color: rgb(247, 224, 164);
+  }
+}
+
+@keyframes pyramid-color-2 {
+  0%,
+  50% {
+    border-left-color: rgb(247, 224, 164);
+    border-bottom-color: rgb(247, 224, 164);
+  }
+  75%,
+  100% {
+    border-left-color: rgb(251, 245, 229);
+    border-bottom-color: rgb(251, 245, 229);
+  }
+}
+
+@keyframes shadow-movement {
+  0% {
+    transform: translate(-50%, 55%) scaleY(0.4) skew(100deg);
+  }
+  50% {
+    transform: translate(-50%, 55%) scaleY(0.2) skew(0deg);
+  }
+  100% {
+    transform: translate(-50%, 55%) scaleY(0.4) skew(-100deg);
+  }
+}
